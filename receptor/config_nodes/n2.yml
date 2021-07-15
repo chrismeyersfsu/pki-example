@@ -1,0 +1,22 @@
+---
+- log-level: debug
+- tcp-peer:
+    address: my-receptor-node1:9900
+    tls: foobar
+- work-command:
+    worktype: worker
+    command: ansible-runner
+    params: worker
+#- tls-server:
+#    name: foobar
+#    key: generated_by_receptor_node_private_key2
+#    cert: generated_by_receptor_node_signed_cert2
+#    requireclientcert: true
+#    clientcas: generated_by_receptor_ca_cert
+- tls-client:
+    name: foobar
+    key: certs/generated_by_receptor_node_private_key2
+    cert: certs/generated_by_receptor_node_signed_cert2
+    rootcas: certs/generated_by_receptor_ca_cert
+- node:
+   id: my-receptor-node2

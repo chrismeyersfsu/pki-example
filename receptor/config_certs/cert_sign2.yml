@@ -1,0 +1,7 @@
+---
+- cert-signreq:
+    req: certs/generated_by_receptor_node_cert_req2
+    cacert: certs/generated_by_receptor_ca_cert
+    cakey: certs/generated_by_receptor_ca_private_key
+    outcert: certs/generated_by_receptor_node_signed_cert2
+    verify: True

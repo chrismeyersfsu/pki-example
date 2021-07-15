@@ -1,0 +1,8 @@
+---
+- cert-makereq:
+    commonname: Ansible
+    bits: 4096
+    nodeid: my-receptor-node1
+    outreq: certs/generated_by_receptor_node_cert_req
+    outkey: certs/generated_by_receptor_node_private_key
+    dnsname: my-receptor-node1

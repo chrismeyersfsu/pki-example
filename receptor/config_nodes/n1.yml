@@ -1,0 +1,25 @@
+---
+- log-level: debug
+- control-service:
+    service: control
+    filename: n1.sock
+- tcp-listener:
+    port: 9900
+    tls: foobar
+- work-command:
+    worktype: worker
+    command: ansible-runner
+    params: worker
+- tls-server:
+    name: foobar
+    key: certs/generated_by_receptor_node_private_key
+    cert: certs/generated_by_receptor_node_signed_cert
+    requireclientcert: true
+    clientcas: certs/generated_by_receptor_ca_cert
+- tls-client:
+    name: foobar
+    key: certs/generated_by_receptor_node_private_key
+    cert: certs/generated_by_receptor_node_signed_cert
+    rootcas: certs/generated_by_receptor_ca_cert
+- node:
+    id: my-receptor-node1

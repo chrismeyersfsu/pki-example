@@ -1,0 +1,6 @@
+---
+- cert-init:
+    commonname: Ansible
+    bits: 4096
+    outcert: certs/generated_by_receptor_ca_cert
+    outkey: certs/generated_by_receptor_ca_private_key
