@@ -5,9 +5,13 @@ Example generation of PKI certificates using `openssl` commandline utility vs. c
 ```
 .
 ├── openssl
-│   ├── config_receptor
+│   ├── config_nodes
 │   │   ├── n1.yml
 │   │   └── n2.yml
+│   ├── config_openssl
+│   │   ├── n1.conf
+│   │   ├── n2.conf
+│   │   └── sign.conf
 │   └── Makefile
 ├── README.md
 └── receptor

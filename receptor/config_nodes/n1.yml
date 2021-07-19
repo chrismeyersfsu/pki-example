@@ -16,10 +16,10 @@
     cert: certs/generated_by_receptor_node_signed_cert
     requireclientcert: true
     clientcas: certs/generated_by_receptor_ca_cert
-- tls-client:
-    name: foobar
-    key: certs/generated_by_receptor_node_private_key
-    cert: certs/generated_by_receptor_node_signed_cert
-    rootcas: certs/generated_by_receptor_ca_cert
+#- tls-client:
+#    name: foobar
+#    key: certs/generated_by_receptor_node_private_key
+#    cert: certs/generated_by_receptor_node_signed_cert
+#    rootcas: certs/generated_by_receptor_ca_cert
 - node:
     id: my-receptor-node1

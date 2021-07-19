@@ -26,15 +26,17 @@ tls:
 		-newkey rsa:4096 \
 		-out ca/tls.csr \
 		-keyout ca/tls.key \
-		-subj "/CN=my-receptor-node1"
-		#-addext "subjectAltName = DNS:my-receptor-node1.ansible.com"
+		-subj "/CN=my-receptor-node1" \
+		-reqexts v3_req \
+		-config config_openssl/n1.conf
 	openssl req \
 		-nodes \
 		-newkey rsa:4096 \
 		-out ca/tls2.csr \
 		-keyout ca/tls2.key \
-		-subj "/CN=my-receptor-node2"
-		#-addext "subjectAltName = DNS:my-receptor-node2.ansible.com"
+		-subj "/CN=my-receptor-node2" \
+		-reqexts v3_req \
+		-config config_openssl/n2.conf
 
 sign_tls:
 	openssl x509 \
@@ -45,7 +47,9 @@ sign_tls:
 		-CAcreateserial \
 		-CA ca/root-ca.crt \
 	    -CAkey ca/root-ca.key \
-		-out ca/tls.crt
+		-out ca/tls.crt \
+		-extensions v3_req \
+		-extfile config_openssl/sign.conf
 	openssl x509 \
 		-req \
 		-sha256 \
@@ -54,17 +58,20 @@ sign_tls:
 		-CAcreateserial \
 		-CA ca/root-ca.crt \
 	    -CAkey ca/root-ca.key \
-		-out ca/tls2.crt
+		-out ca/tls2.crt \
+		-extfile config_openssl/n2.conf \
+		-extensions v3_req
 
 verify:
 	openssl verify -verbose -CAfile ca/root-ca.crt ca/tls.crt
 	openssl verify -verbose -CAfile ca/root-ca.crt ca/tls2.crt
 
 n1:
-	receptor -c config_receptor/n1.yml
+	receptor -c config_nodes/n1.yml
 
 n2:
-	receptor -c config_receptor/n2.yml
+	receptor -c config_nodes/n2.yml
+	#GODEBUG=x509ignoreCN=0 receptor -c config_nodes/n2.yml
 
 clean:
 	rm -rf ca
