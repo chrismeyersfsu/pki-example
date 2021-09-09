@@ -3,6 +3,9 @@
 - tcp-peer:
     address: my-receptor-node1:9900
     tls: foobar
+- control-service:
+    service: control
+    filename: n2.sock
 - work-command:
     worktype: worker
     command: ansible-runner
